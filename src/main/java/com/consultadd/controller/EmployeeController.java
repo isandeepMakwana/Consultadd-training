@@ -28,4 +28,18 @@ public class EmployeeController {
         return employeeService.saveEmployee(employee);
     }
 
+
+    @PutMapping("/updateEmp")
+    public  String updateEmployee(@RequestBody Employee employee)
+    {
+        return  employeeService.updateEmployee(employee);
+    }
+
+    @DeleteMapping("/deleteEmp")
+    public  String deleteEmployee(String id)
+    {
+        return  employeeService.deleteEmployee(id);
+    }
+
+
 }

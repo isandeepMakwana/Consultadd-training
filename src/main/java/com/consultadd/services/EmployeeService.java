@@ -31,5 +31,29 @@ public class EmployeeService {
         }
     }
 
+    public  String updateEmployee(Employee employee)
+    {
+        if(employeeRepository.existsById(employee.getId()))
+        {
+            Employee emp = employeeRepository.getById(employee.getId());
+            emp.setName(employee.getName());
+            emp.setAge(employee.getAge());
+            return  "Employee data updated successful .";
+        }
+        else {
+            return "Employee data is invalid ! ";
+        }
+    }
 
+    public String deleteEmployee(String id)
+    {
+        if(employeeRepository.existsById(id))
+        {
+            employeeRepository.deleteById(id);
+            return "Employee data deleted successful .";
+        }else
+        {
+            return "invalid Id !";
+        }
+    }
 }
