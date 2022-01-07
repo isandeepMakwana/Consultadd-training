@@ -38,7 +38,8 @@ public class EmployeeService {
             Employee emp = employeeRepository.getById(employee.getId());
             emp.setName(employee.getName());
             emp.setAge(employee.getAge());
-            return  "Employee data updated successful .";
+            employeeRepository.save(emp);
+            return  "Employee data updated successfully .";
         }
         else {
             return "Employee data is invalid ! ";
