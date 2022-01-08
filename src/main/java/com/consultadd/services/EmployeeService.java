@@ -35,10 +35,7 @@ public class EmployeeService {
     {
         if(employeeRepository.existsById(employee.getId()))
         {
-            Employee emp = employeeRepository.getById(employee.getId());
-            emp.setName(employee.getName());
-            emp.setAge(employee.getAge());
-            employeeRepository.save(emp);
+            employeeRepository.save(employee);
             return  "Employee data updated successfully .";
         }
         else {
