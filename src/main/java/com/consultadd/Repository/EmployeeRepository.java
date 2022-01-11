@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee,String> {
     List<Employee> findAllByCity(String city);
+//    public  Employee getEmployeeByEmployeeName();
 }
