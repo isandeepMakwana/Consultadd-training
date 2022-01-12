@@ -5,6 +5,7 @@ import com.consultadd.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,7 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
-import java.util.List;
+
 @Configurable
 @EnableWebSecurity
 public class webSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -31,7 +32,12 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
 
+        http.authorizeHttpRequests().antMatchers(HttpMethod.DELETE, "/**")
+                .hasAnyRole("ADMIN").antMatchers(HttpMethod.GET,"/**").hasAnyRole("USER").antMatchers("/**").permitAll().and().formLogin().and().csrf().disable();
+    }
 
 
 
